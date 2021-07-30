@@ -4,6 +4,7 @@ const { logSuccess, logError } = require( '../utils/logger' );
 // create models
 require( '../models/User' );
 require( '../models/Meeting' );
+require( '../models/Team' );
 
 mongoose.set( 'returnOriginal', false );
 mongoose.set( 'useFindAndModify', false );
