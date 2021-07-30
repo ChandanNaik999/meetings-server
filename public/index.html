@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <style>
+        :root {
+            font-size: 16px;
+        }
+
+        hr {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border: 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-hour {
+            position: relative;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        .calendar-hour-bg {
+            position: relative;
+        }
+
+        .card-meeting {
+            position: absolute;
+            width: auto;
+            right: 10px;
+            left: 10px;
+            z-index: 2;
+            padding: 10px;
+            background-color: azure;
+            font-size: small;
+            border-radius: 0.2em;
+            border-color: black;
+            border-width: 1px;
+            border-style: solid;
+            overflow: hidden;
+        }
+
+    </style>
+<script defer src="index.bundle.js"></script></head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Calendar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search_meetings">Meetings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teams_list">Teams</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">Hi, <span id="nameNav">test@gmail.com</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="logoutLink" href="#">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="container my-3">
+            <h1 class="pb-3 mb-3 border-bottom">Calendar</h1>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="col">
+                    <div class="pb-1">
+                        <h3 id="selectedDate">12 September 2020</h3>
+                    </div>
+                    <div class="text-secondary">
+                        <h4 id="selectedDay">Saturday</h4>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" id="datepicker">
+                </div>
+            </div>
+
+            <hr />
+
+        </div>
+
+        <!-- CALENDAR -->
+
+        <div class="container my-3 calendar-container" id="calendarContainer">
+
+        </div>
+    </main>
+
+</body>
+
+</html>

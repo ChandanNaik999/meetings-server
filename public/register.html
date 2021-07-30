@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <meta name="theme-color" content="#7952b3">
+
+
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      background-color: #f5f5f5;
+    }
+
+    .form-signin {
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      margin: auto;
+    }
+
+    .form-signin input[type="email"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    ul.helper-text {
+      margin-top: 6px;
+      font-size: 12px;
+      text-align: left;
+      color: blue;
+    }
+  </style>
+<script defer src="register.bundle.js"></script></head>
+
+<body class="text-center">
+
+  <main class="form-signin">
+    <form id="register-form">
+      <!-- <img class="mb-3" src="./assets/app_icon.png" alt="Meetings app Image" width="64" height="64"> -->
+      <h1 class="h3 mb-3 fw-bolder">Meetings</h1>
+
+      <div class="form-floating">
+        <input type="text" class="form-control" id="nameInput" placeholder="John J" required>
+        <label for="nameInput">Name</label>
+      </div>
+
+      <div class="form-floating">
+        <input type="email" class="form-control" id="emailInput" placeholder="john@gmail.com" required>
+        <label for="emailInput">Email address</label>
+      </div>
+
+      <div class="form-floating">
+        <input type="password" class="form-control" id="passwordInput" placeholder="Password"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
+        <label for="passwordInput">Password</label>
+      </div>
+
+      <div class="password-helper">
+        <ul class="helper-text">
+          <li>Password must contain at least 1 lowercase letter</li>
+          <li>Password must contain at least 1 uppercase letter</li>
+          <li>Password must contain at least 1 numeric letter</li>
+          <li>Password must contain at least 1 special letter</li>
+          <li>Password must be at least 8 characters long</li>
+        </ul>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+    </form>
+  </main>
+
+</body>
+
+</html>
