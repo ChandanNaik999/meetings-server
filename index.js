@@ -13,6 +13,8 @@ const app = express();
 
 // define routes
 const authRouter = require( './routes/auth' );
+const usersRouter = require( './routes/users' );
+const meetingsRouter = require( './routes/meetings' );
 
 app.use( logger );
 
@@ -25,6 +27,11 @@ app.use( express.urlencoded( { extended: false } ) );
 app.use( express.json() );
 
 app.use( '/api/auth', authRouter );
+app.use( '/api/users', usersRouter );
+app.use( '/api/calendar', meetingsRouter );
+app.use( '/api/meetings', meetingsRouter );
+
+
 app.use( pageNotFoundHandler );
 app.use( errorHandler );
 

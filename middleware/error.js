@@ -8,9 +8,11 @@ const pageNotFoundHandler = ( req, res, next ) => {
 
 const errorHandler = ( error, req, res, next ) => {
     if( !error.status ) {
-        // TODO: check duplicate key error
         if( error instanceof mongoose.Error.ValidationError ) {
             error.status = 400;
+        } else if ( error.name === 'MongoError' && error.code === 11000 ) { 
+            error.status = 400;
+            error.message = `Duplicate Key Error: ${error.message}`;
         } else {
             error.status = 500;
         }
