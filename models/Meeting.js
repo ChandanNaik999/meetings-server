@@ -56,5 +56,6 @@ const meetingSchema = new mongoose.Schema({
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 meetingSchema.path( 'attendees.email' ).validate( email => emailRegex.test( email.toLowerCase() ), 'Invalid email id format' );
 
+meetingSchema.index({'$**': 'text'});
 
 mongoose.model( 'Meeting', meetingSchema );

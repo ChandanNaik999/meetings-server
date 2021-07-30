@@ -14,6 +14,7 @@ const app = express();
 // define routes
 const authRouter = require( './routes/auth' );
 const usersRouter = require( './routes/users' );
+const calendarRouter = require( './routes/calendar' );
 const meetingsRouter = require( './routes/meetings' );
 
 app.use( logger );
@@ -28,7 +29,7 @@ app.use( express.json() );
 
 app.use( '/api/auth', authRouter );
 app.use( '/api/users', usersRouter );
-app.use( '/api/calendar', meetingsRouter );
+app.use( '/api/calendar', calendarRouter );
 app.use( '/api/meetings', meetingsRouter );
 
 
