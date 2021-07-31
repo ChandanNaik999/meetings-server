@@ -64,6 +64,12 @@ const filterMeetings = async ( req, res, next ) => {
         requestQuery = { date : dateQuery }
     }
 
+    // ensure that the user is the attendee
+    requestQuery.attendees = {
+        $elemMatch: {
+            email: res.locals.claims.email 
+        } 
+    }
 
     try {
         const meetings = await Meeting
@@ -87,6 +93,14 @@ const addAMeeting = async ( req, res, next ) => {
         const error = new Error( 'There is no meeting data' );
         error.status = 400;
         return next( error );
+    }
+
+    // check if the members has the user added
+    if ( !meeting['attendees'].some(user => user.email === res.locals.claims.email) ) {
+        meeting['attendees'].push( {
+            "email": res.locals.claims.email,
+            "userId": res.locals.claims._id,
+        } );
     }
 
     try {
@@ -129,8 +143,15 @@ const editMeeting = async ( req, res, next ) => {
                     userId : user._id
                 }
 
-                const meeting = await Meeting.findByIdAndUpdate( 
-                    meetingId,
+                const meeting = await Meeting.findOneAndUpdate(
+                    {
+                        _id : meetingId,
+                        attendees : {
+                            $elemMatch: {
+                                email: res.locals.claims.email 
+                            } 
+                        }
+                    },
                     {
                         $addToSet: {
                             attendees : attendee
@@ -139,8 +160,8 @@ const editMeeting = async ( req, res, next ) => {
                 );
 
                 if( !meeting ){
-                    const error = new Error( 'Meeting does not exist' );
-                    error.status = 400;
+                    const error = new Error( 'Meeting does not exist or you are not a part of the team' );
+                    error.status = 404;
                     return next( error );
                 }
 
@@ -168,7 +189,7 @@ const editMeeting = async ( req, res, next ) => {
     
                 if( !meeting ){
                     const error = new Error( 'Meeting does not exist' );
-                    error.status = 400;
+                    error.status = 404;
                     return next( error );
                 }
     

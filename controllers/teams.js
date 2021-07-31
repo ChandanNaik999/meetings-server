@@ -1,6 +1,6 @@
 const mongoose = require( 'mongoose' );
-const Meeting = mongoose.model( 'Meeting' );
 const Team = mongoose.model( 'Team' );
+const User = mongoose.model( 'User' );
 
 const searchTeams = async ( req, res, next ) => {
     try {
@@ -34,6 +34,14 @@ const addATeam = async ( req, res, next ) => {
         return next( error );
     }
 
+    // check if the members has the user added
+    if ( !team['members'].some(user => user.email === res.locals.claims.email) ) {
+        team['members'].push( {
+            "email": res.locals.claims.email,
+            "userId": res.locals.claims._id,
+        } );
+    }
+
     try {
         const createdTeam = await Team.create( team );
 
@@ -47,11 +55,11 @@ const addATeam = async ( req, res, next ) => {
 };
 
 const editTeam = async ( req, res, next ) => {
-    let meetingId = req.params.id;
+    let teamId = req.params.id;
     let action = req.query.action;
 
     switch( action ){
-        case 'add_attendee':
+        case 'add_member':
             let email = req.query.email;
 
             if( !email ){
@@ -68,58 +76,64 @@ const editTeam = async ( req, res, next ) => {
                     return next( error );
                 }
                 
-                let attendee = user.toObject();
-                attendee = {
+                let member = user.toObject();
+                member = {
                     email : user.email,
                     userId : user._id
                 }
 
-                const meeting = await Meeting.findByIdAndUpdate( 
-                    meetingId,
+                const team = await Team.findOneAndUpdate(
+                    {
+                        _id : teamId,
+                        members : {
+                            $elemMatch: {
+                                email: res.locals.claims.email 
+                            } 
+                        }
+                    },
                     {
                         $addToSet: {
-                            attendees : attendee
+                            members : member
                         },
                     },
                 );
 
-                if( !meeting ){
-                    const error = new Error( 'Meeting does not exist' );
-                    error.status = 400;
+                if( !team ){
+                    const error = new Error( 'Team does not exist or your are not a member of the team.' );
+                    error.status = 404;
                     return next( error );
                 }
 
                 res.status( 200 ).json({
                     message: 'success',
-                    data: meeting
+                    data: team
                 });
             } catch( error ) {
                 return next( error );
             }
             break;
-        case 'remove_attendee':
-            console.log(res.locals.claims.email, meetingId);
+        case 'remove_member':
             try{
-                const meeting = await Meeting.findByIdAndUpdate( 
-                    meetingId,
+                const team = await Team.findByIdAndUpdate( 
+                    teamId,
                     {
                         $pull: {
-                            attendees : {
+                            members : {
                                 email: res.locals.claims.email,
                             }
                         },
                     },
                 );
     
-                if( !meeting ){
-                    const error = new Error( 'Meeting does not exist' );
-                    error.status = 400;
+                if( !team ){
+                    const error = new Error( 'Team does not exist or you are not part of the team' );
+                    error.status = 404;
                     return next( error );
                 }
     
                 res.status( 200 ).json({
                     message: 'success',
-                    data: meeting
+                    data: team
                 });
             } catch( error ) {
                 return next( error );
