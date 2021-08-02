@@ -118,3 +118,4 @@ out
 .pnp.*
 .env.development
 data/seed.production.sh
+.env.production
