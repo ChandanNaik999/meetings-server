@@ -1,1 +1,115 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><title>Meetings</title><script defer="defer" src="660.bundle.js"></script><script defer="defer" src="search_meetings.bundle.js"></script></head><body><nav class="navbar navbar-expand-lg navbar-light bg-light"><div class="container-fluid"><ul class="navbar-nav mr-auto"><li class="nav-item"><a class="nav-link" href="/">Calendar</a></li><li class="nav-item"><a class="nav-link active" href="/search_meetings">Meetings</a></li><li class="nav-item"><a class="nav-link" href="/teams_list">Teams</a></li></ul><ul class="navbar-nav ml-auto"><li class="nav-item"><a class="nav-link" href="/account">Hi, <span id="nameNav">test@gmail.com</span></a></li><li class="nav-item"><a class="nav-link" id="logoutLink" href="#">Logout</a></li></ul></div></nav><main class="container my-3"><h1 class="pb-3 mb-3 border-bottom">Meetings</h1><ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" href="/search_meetings">Filter / Search Meetings</a></li><li class="nav-item"><a class="nav-link" href="/add_meeting">Add a Meeting</a></li></ul><form class="bg-info p-3 mt-2 rounded" id="search-form"><h2 class="pb-3 mb-1 mt-3 text-white border-bottom">Search for Meetings</h2><div class="form-group mb-3"><label for="formGroupDateInput">Date</label> <select class="form-control" id="formGroupDateInput"><option value="all">ALL</option><option value="past">PAST</option><option value="present" selected="selected">TODAY</option><option value="upcoming">UPCOMING</option></select></div><div class="form-group mb-3"><label for="formGroupSearchFor">Search For</label> <textarea class="p-2 form-control" id="formGroupSearchFor" spellcheck="false" placeholder="Search using words which describe the meeting"></textarea></div><button class="btn btn-primary" type="submit">Search</button></form><h2 class="pb-2 my-3 border-bottom" id="meetingsListTitle">Meetings matching search criteria</h2><div class="meetings-list" id="searchMeetingsList"></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meetings</title>
+<script defer src="vendors-node_modules_axios_index_js-node_modules_core-js_stable_index_js-node_modules_regener-157406.bundle.js"></script><script defer src="public_js_customs_app_js-public_js_services_auth_js-public_css_main_css-data_image_svg_xml_3c-4ea2a1.bundle.js"></script><script defer src="search_meetings.bundle.js"></script></head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Calendar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/search_meetings">Meetings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teams_list">Teams</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">Hi, <span id="nameNav">test@gmail.com</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="logoutLink" href="#">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+
+    <main class="container my-3">
+
+        <!-- TITLE -->
+        <h1 class="pb-3 mb-3 border-bottom">Meetings</h1>
+
+        <!-- TAB -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="/search_meetings">Filter / Search Meetings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/add_meeting">Add a Meeting</a>
+            </li>
+        </ul>
+
+
+        <form class="bg-info p-3 mt-2 rounded" id="search-form">
+            <h2 class="pb-3 mb-1 mt-3 text-white border-bottom">Search for Meetings</h2>
+            <div class="form-group mb-3">
+                <label for="formGroupDateInput">Date</label>
+                <select class="form-control" id="formGroupDateInput">
+                    <option value="all">ALL</option>
+                    <option value="past">PAST</option>
+                    <option value="present" selected>TODAY</option>
+                    <option value="upcoming">UPCOMING</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="formGroupSearchFor">Search For </label>
+                <textarea class="p-2 form-control" id="formGroupSearchFor" spellcheck="false"
+                    placeholder="Search using words which describe the meeting"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+
+        <h2 class="pb-2 my-3 border-bottom" id="meetingsListTitle">Meetings matching search criteria</h2>
+
+        <!-- INDIVIDUAL CARD -->
+        <div class="meetings-list" id="searchMeetingsList">
+
+        </div>
+        <!-- <div class="card p-3">
+            <div class="card-body">
+                <h5 class="card-title">12 September 2020, 06:00 - 07:00</h5>
+                <p class="card-text">This is the meeting name</p>
+                <a href="#" class="btn btn-danger">Excuse yourself</a>
+                <hr class="my-3" />
+                <p id="meeting_attendees"><strong>Attendees: </strong>john@gmail.com, jane@gmail.com</p>
+
+                <div class="row gy-2 gx-3 align-items-center">
+
+                    <div class="col-auto">
+                        <label class="visually-hidden" for="select_member">Select Member</label>
+                        <select class="form-select" id="select_member" aria-label="Select Member">
+                            <option selected>Select member</option>
+                            <option value="1">abc@gmail.com</option>
+                            <option value="2">xyz@gmail.co</option>
+                            <option value="3">ghf@gmail.co</option>
+                        </select>
+                    </div>
+
+                    <div class="col-auto">
+                        <button class="btn btn-info text-white">Add</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div> -->
+
+    </main>
+
+
+</body>
+
+</html>

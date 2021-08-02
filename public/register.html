@@ -1,4 +1,15 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Signup</title><meta name="theme-color" content="#7952b3"><style>html,
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <meta name="theme-color" content="#7952b3">
+
+  <style>
+    html,
     body {
       height: 100%;
     }
@@ -33,4 +44,46 @@
       font-size: 12px;
       text-align: left;
       color: blue;
-    }</style><script defer="defer" src="660.bundle.js"></script><script defer="defer" src="register.bundle.js"></script></head><body class="text-center"><main class="form-signin"><form id="register-form"><h1 class="h3 mb-3 fw-bolder">Meetings</h1><div class="form-floating"><input class="form-control" id="nameInput" placeholder="John J" required> <label for="nameInput">Name</label></div><div class="form-floating"><input type="email" class="form-control" id="emailInput" placeholder="john@gmail.com" required> <label for="emailInput">Email address</label></div><div class="form-floating"><input type="password" class="form-control" id="passwordInput" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required> <label for="passwordInput">Password</label></div><div class="password-helper"><ul class="helper-text"><li>Password must contain at least 1 lowercase letter</li><li>Password must contain at least 1 uppercase letter</li><li>Password must contain at least 1 numeric letter</li><li>Password must contain at least 1 special letter</li><li>Password must be at least 8 characters long</li></ul></div><button class="w-100 btn btn-lg btn-primary" type="submit">Register</button></form></main></body></html>
+    }
+  </style>
+<script defer src="vendors-node_modules_axios_index_js-node_modules_core-js_stable_index_js-node_modules_regener-157406.bundle.js"></script><script defer src="public_js_customs_app_js-public_js_services_auth_js-public_css_main_css-data_image_svg_xml_3c-4ea2a1.bundle.js"></script><script defer src="register.bundle.js"></script></head>
+
+<body class="text-center">
+
+  <main class="form-signin">
+    <form id="register-form">
+      <!-- <img class="mb-3" src="./assets/app_icon.png" alt="Meetings app Image" width="64" height="64"> -->
+      <h1 class="h3 mb-3 fw-bolder">Meetings</h1>
+
+      <div class="form-floating">
+        <input type="text" class="form-control" id="nameInput" placeholder="John J" required>
+        <label for="nameInput">Name</label>
+      </div>
+
+      <div class="form-floating">
+        <input type="email" class="form-control" id="emailInput" placeholder="john@gmail.com" required>
+        <label for="emailInput">Email address</label>
+      </div>
+
+      <div class="form-floating">
+        <input type="password" class="form-control" id="passwordInput" placeholder="Password"
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
+        <label for="passwordInput">Password</label>
+      </div>
+
+      <div class="password-helper">
+        <ul class="helper-text">
+          <li>Password must contain at least 1 lowercase letter</li>
+          <li>Password must contain at least 1 uppercase letter</li>
+          <li>Password must contain at least 1 numeric letter</li>
+          <li>Password must contain at least 1 special letter</li>
+          <li>Password must be at least 8 characters long</li>
+        </ul>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+    </form>
+  </main>
+
+</body>
+
+</html>

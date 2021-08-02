@@ -18,6 +18,7 @@ const usersRouter = require( './routes/users' );
 const calendarRouter = require( './routes/calendar' );
 const meetingsRouter = require( './routes/meetings' );
 const teamsRouter = require( './routes/teams' );
+const profileRouter = require( './routes/profile' );
 
 // server pages
 app.use( express.static( path.join( process.cwd(), 'public' ), {
@@ -32,6 +33,7 @@ app.use( '/api/users', usersRouter );
 app.use( '/api/calendar', calendarRouter );
 app.use( '/api/meetings', meetingsRouter );
 app.use( '/api/teams', teamsRouter );
+app.use( '/api/profile', profileRouter );
 
 app.use( pageNotFoundHandler );
 app.use( errorHandler );
