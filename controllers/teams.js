@@ -4,7 +4,6 @@ const User = mongoose.model( 'User' );
 
 const searchTeams = async ( req, res, next ) => {
     try {
-        console.log(res.locals.claims.email )
         const teams = await Team
             .find( { 
                 members : {

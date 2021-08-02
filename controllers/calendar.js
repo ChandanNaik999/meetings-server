@@ -14,7 +14,14 @@ const getMeetingsByDate = async ( req, res, next ) => {
 
     try {
         const meetings = await Meeting
-            .find( { date } );
+            .find( { 
+                date,
+                attendees : {
+                    $elemMatch: {
+                        email: res.locals.claims.email 
+                    } 
+                } 
+             } );
     
         res.status( 200 ).json({
             message: 'success',

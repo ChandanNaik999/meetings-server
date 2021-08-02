@@ -4,11 +4,15 @@ const teamSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
+    },
+    shortName: {
+        type: String,
+        required: true,
         unique: true
     },
     description: {
         type: String,
-        minLength: 50
+        minLength: 10
     },
     members: [
         {

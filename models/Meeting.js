@@ -24,7 +24,7 @@ const meetingSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        minLength: 50
+        minLength: 10
     },
     date: {
         type: Date,

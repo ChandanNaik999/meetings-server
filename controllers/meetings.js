@@ -18,17 +18,25 @@ const filterMeetings = async ( req, res, next ) => {
 
     let dateFlag = true;
     let dateQuery = {}
+
+    const today = new Date();
+    today.setHours( 0, 0, 0, 0 );
+
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours( 0, 0, 0, 0 );
+
+    const tomorrow = new Date()
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    tomorrow.setHours( 0, 0, 0, 0 );
+
     switch( period ) {
         case 'past':
             dateQuery = {
-                $lt : (new Date()).toISOString()
+                $lt : today.toISOString()
             }
             break;
-        case 'today':
-            const yesterday = new Date()
-            yesterday.setDate(yesterday.getDate() - 1)
-            const tomorrow = new Date()
-            tomorrow.setDate(tomorrow.getDate() + 1)
+        case 'present':
             dateQuery = {
                 $gt: yesterday.toISOString(),
                 $lt: tomorrow.toISOString(),
@@ -36,7 +44,7 @@ const filterMeetings = async ( req, res, next ) => {
             break;
         case 'upcoming':
             dateQuery = {
-                $gt : (new Date()).toISOString()
+                $gt : today.toISOString()
             }
             break;
         default:
@@ -50,14 +58,16 @@ const filterMeetings = async ( req, res, next ) => {
             date : dateQuery,
             $text: 
                 {
-                    $search: search
+                    $search: search,
+                    $caseSensitive: false
                 }
         }
     } else if ( searchFlag ) {
         requestQuery = {
             $text: 
                 {
-                    $search: search
+                    $search: search,
+                    $caseSensitive: false
                 }
         }
     } else if ( dateFlag ) {
@@ -174,7 +184,6 @@ const editMeeting = async ( req, res, next ) => {
             }
             break;
         case 'remove_attendee':
-            console.log(res.locals.claims.email, meetingId);
             try{
                 const meeting = await Meeting.findByIdAndUpdate( 
                     meetingId,
