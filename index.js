@@ -36,6 +36,10 @@ app.use( '/api/teams', teamsRouter );
 app.use( pageNotFoundHandler );
 app.use( errorHandler );
 
+app.use( function( res, req, next ) {
+    res.sendFile( path.join( process.cwd(), 'public', 'index.html' ))
+} );
+
 const PORT = process.env.PORT || 3000;
 
 app

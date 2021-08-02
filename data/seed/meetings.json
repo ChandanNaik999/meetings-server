@@ -1,0 +1,24 @@
+[
+    {
+        "_id":{
+            "$oid": "123412341234123412341234"
+        },
+        "name": "Sample meeting",
+        "description": "sample meeting description",
+        "date": {"$date":"2021-08-01T18:30:00.000Z"},
+        "startTime": {
+            "hours": 9,
+            "minutes": 0
+        },
+        "endTime": {
+            "hours": 10,
+            "minutes": 30
+        },
+        "attendees": [
+            {
+                "userId": {"$oid":"123412341234123412341235"},
+                "email": "sample@example.com"
+            }
+        ]
+    }
+]

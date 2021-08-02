@@ -1,0 +1,9 @@
+[
+    {
+        "_id":{"$oid":"123412341234123412341235"},
+        "roles":["general"],
+        "name":"Sample User",
+        "email":"sample@example.com",
+        "password":"$2b$10$In47WYhOE6JOhbGnyEsUruuYamjxPAMBt24bXEapRUnaatGaU2wGS"
+    }
+]

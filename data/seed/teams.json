@@ -1,0 +1,11 @@
+[
+    {
+        "_id":{"$oid":"6105708d8f87af0e0ce2069d"},
+        "name":"sample team",
+        "shortName":"sampleTeam",
+        "description":"this is a sample team.",
+        "members":[
+            {"userId":{"$oid":"123412341234123412341235"},"email":"sample@example.com"}
+        ]
+    }
+]

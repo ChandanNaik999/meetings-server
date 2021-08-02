@@ -10,9 +10,9 @@ mongoose.set( 'returnOriginal', false );
 mongoose.set( 'useFindAndModify', false );
 mongoose.set( 'runValidators', true );
 
-const { DB_HOST, DB_PORT, DB_NAME } = process.env;
+const { DB_PORT, DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, NODE_ENV } = process.env;
 
-const connectionStr = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+const connectionStr = NODE_ENV === 'development' ? `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}` : `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`;
 
 mongoose.connect( connectionStr, {
     useNewUrlParser: true,
