@@ -70,7 +70,8 @@ const login = async ( req, res, next ) => {
                     data: {
                         token,
                         name: matchedUser.name,
-                        email: matchedUser.email
+                        email: matchedUser.email,
+                        _id: matchedUser._id
                     }
                 });
             });

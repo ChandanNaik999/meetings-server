@@ -33,11 +33,11 @@ usersSchema.path( 'password' ).validate( password => passwordRegex.test( passwor
 
 usersSchema.pre( 'save', function( done ) {
     const user = this;
-
     // password has not been updated
     if( !user.isModified( 'password' ) ) {
         return done();
     }
+    console.log('saved here');
 
     encryptPassword( user.password, ( err, hashedPassword ) => {
         if( err ) {
@@ -48,6 +48,30 @@ usersSchema.pre( 'save', function( done ) {
         done();
     });
 });
+
+usersSchema.pre('findOneAndUpdate',   async function( done ) {
+
+    
+    console.log(this._update, this.getQuery())
+
+    if ( !this._update.password ) {
+        return done();
+    }
+    console.log('password updation')
+    const docToUpdate = await this.model.findOne(this.getQuery())
+    if (docToUpdate.password !== this._update.password) {
+        encryptPassword( this._update.password, ( err, hashedPassword ) => {
+            if( err ) {
+                return done( err );
+            }
+            this.set({ password : hashedPassword });
+            this.update({}, this.getUpdate()).exec()
+            done();
+        });
+      
+    }
+  })
+  
 
 usersSchema.methods.checkPassword = function( password, done ) {
     checkPassword( password, this.password, done );

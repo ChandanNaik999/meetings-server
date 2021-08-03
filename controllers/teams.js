@@ -12,6 +12,8 @@ const searchTeams = async ( req, res, next ) => {
                     } 
                 }
             } );
+
+        console.log(teams)
     
         res.status( 200 ).json({
             message: 'success',

@@ -1,5 +1,5 @@
 const express = require( 'express' );
-const { setProfilePic} = require( '../controllers/profile' );
+const { setProfilePic, getProfilePic } = require( '../controllers/profile' );
 const { authenticate, authorize } = require( '../utils/auth' );
 const path = require( 'path' );
 let fileName = 'test'
@@ -31,15 +31,16 @@ const upload = multer({
 });
 
 const setFileName = type => {
-    console.log('here');
     return ( req, res, next ) => {
         fileName = res.locals.claims[type];
         next();
     };
 };
 
+
 const router = express.Router();
 
 router.post( '/', authenticate, authorize( 'general' ), setFileName('_id'), upload.single('profilepic'), setProfilePic );
+router.get( '/pic/:id', authenticate, authorize( 'general' ), getProfilePic );
 
 module.exports = router;
