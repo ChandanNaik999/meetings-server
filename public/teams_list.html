@@ -47,7 +47,8 @@
             <div class="row align-items-center">
                 <h1 class="col">Teams</h1>
                 <!-- <a class="col-auto btn btn btn-primary" href="javascript:;" title="Add a team" data-toggle="modal" data-target="#myModal">Add new</a> -->
-                <button class="btn btn-primary col-auto" id="addNewTeamButton" data-toggle="modal" data-target="#myModal"> Add New Team</button>
+                <!-- <button class="btn btn-primary col-auto" id="addNewTeamButton" data-toggle="modal" data-target="#myModal"> Add New Team</button> -->
+                <button class="button col-auto mx-2" id="addNewTeamButton" data-toggle="modal" data-target="#myModal"> Add New Team</button>
             </div>
             <hr class='my-2'>
             <p class="text-muted fs-5" id="teamsListTitle">View and edit the teams that you are part of</p>
@@ -59,7 +60,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Add a Team</h4>
-                            <button type="button" data-dismiss="modal" id="modalDismiss"></button>
+                            <button type="button" data-dismiss="modal" id="modalDismiss"><span aria-hidden="true">&times;</span></button>
                             <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                         </div>
                         <div class="modal-body">
@@ -87,7 +88,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="submitAddTeam">Add team</button>
+                            <button class="button mx-2" data-dismiss="modal" id="submitAddTeam">Add team</button>
                         </div>
                     </div>
     
