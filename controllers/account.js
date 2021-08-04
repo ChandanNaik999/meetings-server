@@ -157,11 +157,19 @@ const getTotalTeams = async ( req, res, next ) => {
                     }
                 ]
              );
-    
+        if ( teams.length > 0 )
+            res.locals.data = teams[0].count;
+        else 
+            res.locals.data = 0;
         res.status( 200 ).json({
             message: 'success',
-            data: teams
+            data: res.locals.data
         });
+    
+        // res.status( 200 ).json({
+        //     message: 'success',
+        //     data: teams
+        // });
     } catch( error ) {
         return next( error );
     }
@@ -186,11 +194,18 @@ const getTotalMeetings = async ( req, res, next ) => {
                     }
                 ]
              );
-    
+        if ( meetings.length > 0 )
+            res.locals.data = meetings[0].count;
+        else 
+            res.locals.data = 0;
         res.status( 200 ).json({
             message: 'success',
-            data: meetings
+            data: res.locals.data
         });
+        // res.status( 200 ).json({
+        //     message: 'success',
+        //     data: meetings
+        // });
     } catch( error ) {
         return next( error );
     }
