@@ -1,6 +1,6 @@
 const { cyanBright } = require('chalk');
 const redis = require( 'redis' );
-const REDIS_PORT = process.env.REDIS_PORT;
+const REDIS_PORT = process.env.REDISCLOUD_URL;
 const client = redis.createClient( REDIS_PORT, {no_ready_check: true} );
 
 function cache( redisKeyPrefix, cb ) {
