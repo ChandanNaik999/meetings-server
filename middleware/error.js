@@ -1,9 +1,12 @@
 const mongoose = require( 'mongoose' );
+const path = require( 'path' )
 
 const pageNotFoundHandler = ( req, res, next ) => {
-    const error = new Error( 'Not found' );
-    error.status = 404;
-    return next( error );
+    // const error = new Error( 'Not found' );
+    // error.status = 404;
+    // res.sendStatus( 404 );
+    return res.sendFile( path.join( process.cwd(), 'public', '404.html' ))
+    // return next( error );
 };
 
 const errorHandler = ( error, req, res, next ) => {

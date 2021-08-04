@@ -139,6 +139,66 @@ const updateUserDetails = async ( req, res, next ) => {
     
 };
 
+const getTotalTeams = async ( req, res, next ) => {
+    try {
+        const teams = await Team
+            .aggregate( 
+                [
+                    {
+                        "$unwind": "$members"
+                    },
+                    {
+                        "$match" : {
+                            "members.email" : res.locals.claims.email,
+                        }
+                    },
+                    {
+                        $count: "count"
+                    }
+                ]
+             );
+    
+        res.status( 200 ).json({
+            message: 'success',
+            data: teams
+        });
+    } catch( error ) {
+        return next( error );
+    }
+};
+
+
+const getTotalMeetings = async ( req, res, next ) => {
+    try {
+        const meetings = await Meeting
+            .aggregate( 
+                [
+                    {
+                        "$unwind": "$attendees"
+                    },
+                    {
+                        "$match" : {
+                            "attendees.email" : res.locals.claims.email,
+                        }
+                    },
+                    {
+                        $count: "count"
+                    }
+                ]
+             );
+    
+        res.status( 200 ).json({
+            message: 'success',
+            data: meetings
+        });
+    } catch( error ) {
+        return next( error );
+    }
+};
+
+
 module.exports = {
-    updateUserDetails
+    updateUserDetails,
+    getTotalTeams,
+    getTotalMeetings
 };

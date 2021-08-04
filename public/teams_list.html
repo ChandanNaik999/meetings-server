@@ -1,1 +1,150 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><title>Teams</title><style>.hide { display: none; }</style><script defer="defer" src="660.bundle.js"></script><script defer="defer" src="960.bundle.js"></script><script defer="defer" src="teams_list.bundle.js"></script></head><body class="hide"></body><nav class="navbar navbar-expand-lg navbar-light bg-white"><div class="container-fluid"><ul class="navbar-nav mr-auto"><li class="nav-item"><a class="nav-link" href="/">Calendar</a></li><li class="nav-item"><a class="nav-link" href="/search_meetings">Meetings</a></li><li class="nav-item"><a class="nav-link active" href="/teams_list">Teams</a></li></ul><ul class="navbar-nav ml-auto"><li class="nav-item"><a class="nav-link" href="/account"><img src="" alt="" class="rounded-circle bg-green" style="border-color: green;" width="32" height="32" id="navPic"></a></li><li class="nav-item"><a class="nav-link" href="/account">Hi, <span id="nameNav">test@gmail.com</span></a></li></ul></div></nav><main><div class="container my-3"><div class="row align-items-center"><h1 class="col">Teams</h1><button class="button col-auto mx-2" id="addNewTeamButton" data-toggle="modal" data-target="#myModal">Create New Team</button></div><hr class="my-2"><p class="text-muted fs-5" id="teamsListTitle">View and edit the teams that you are part of</p><div class="modal fade" id="myModal" role="dialog" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Add a Team</h4><button type="button" data-dismiss="modal" id="modalDismiss"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="modal-body"><form><div class="form-group"><label for="inputTeamName">Name</label> <input class="form-control mb-2" id="inputTeamName" placeholder="Agile Team"></div><div class="form-group"><label for="inputShortName">Short Name / Username</label> <input class="form-control mb-2" id="inputShortName" placeholder="teamAgile"></div><div class="form-group"><label for="inputMembers">Members</label> <input class="form-control mb-2" id="inputMembers" placeholder="abc@gmail.com, xyz@gmail.com"></div><div class="form-group"><label for="teamDescription" class="col-form-label">Description:</label> <textarea class="form-control mb-2" id="teamDescription"></textarea></div></form></div></div><div class="modal-footer"><button class="button mx-2" data-dismiss="modal" id="submitAddTeam">Add team</button></div></div></div></div><div class="my-grid" id="teamsList"></div></div></main><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer="defer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" defer="defer"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" defer="defer"></script></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teams</title>
+    <style> .hide { display: none; }</style>
+<script defer src="vendors-node_modules_bootstrap_dist_css_bootstrap_min_css.bundle.js"></script><script defer src="vendors-node_modules_axios_index_js-node_modules_core-js_stable_index_js-node_modules_regener-efddf7.bundle.js"></script><script defer src="public_css_main_css-data_image_svg_xml_3csvg_xmlns_27http_www_w3_org_2000_svg_27_viewBox_27-4-b01be0.bundle.js"></script><script defer src="teams_list.bundle.js"></script></head>
+
+<body class="hide"></body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Calendar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search_meetings">Meetings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/teams_list">Teams</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">
+                        <img src="" alt="" class="rounded-circle bg-green" style="border-color: green;" width="32" height="32" id="navPic">
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">Hi, <span id="nameNav">test@gmail.com</span></a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <main>
+        <!-- TODO -->
+        <div class="container my-3">
+
+            
+
+            <div class="row align-items-center">
+                <h1 class="col">Teams</h1>
+                <!-- <a class="col-auto btn btn btn-primary" href="javascript:;" title="Add a team" data-toggle="modal" data-target="#myModal">Add new</a> -->
+                <!-- <button class="btn btn-primary col-auto" id="addNewTeamButton" data-toggle="modal" data-target="#myModal"> Add New Team</button> -->
+                <button class="button col-auto mx-2" id="addNewTeamButton" data-toggle="modal" data-target="#myModal"> Create New Team</button>
+            </div>
+            <hr class='my-2'>
+            <p class="text-muted fs-5" id="teamsListTitle">View and edit the teams that you are part of</p>
+
+            <div class="modal fade" id="myModal" role="dialog" tabIndex="-1">
+                <div class="modal-dialog">
+    
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add a Team</h4>
+                            <button type="button" data-dismiss="modal" id="modalDismiss"><span aria-hidden="true">&times;</span></button>
+                            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-body">
+    
+                                <form>
+                                    <div class="form-group">
+                                        <label for="inputTeamName">Name</label>
+                                        <input type="text" class="form-control mb-2" id="inputTeamName" placeholder="Agile Team">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputShortName">Short Name / Username</label>
+                                        <input type="text" class="form-control mb-2" id="inputShortName" placeholder="teamAgile">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputMembers">Members</label>
+                                        <input type="text" class="form-control mb-2" id="inputMembers"
+                                            placeholder="abc@gmail.com, xyz@gmail.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="teamDescription" class="col-form-label">Description:</label>
+                                        <textarea class="form-control mb-2" id="teamDescription"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="button mx-2" data-dismiss="modal" id="submitAddTeam">Add team</button>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+
+            <div class="my-grid" id="teamsList">
+
+                <!-- INDIVIDUAL CARD -->
+                <!-- <div class="card col-12 col-md-4 d-flex mb-3 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Customer acquisition Team</h5>
+                        <p class="card-text">@customer_acq</p>
+                        <a href="#" class="btn btn-danger">Excuse yourself</a>
+                        <hr class="my-3" />
+                        <p id="meeting_attendees"><strong>Attendees: </strong>john@gmail.com, jane@gmail.com</p>
+
+                        <div class="row gy-2 gx-3 align-items-center">
+
+                            <div class="col-auto">
+                                <label class="visually-hidden" for="select_member">Select Member</label>
+                                <select class="form-select" id="select_member" aria-label="Select Member">
+                                    <option selected>Select member</option>
+                                    <option value="1">abc@gmail.com</option>
+                                    <option value="2">xyz@gmail.co</option>
+                                    <option value="3">ghf@gmail.co</option>
+                                </select>
+                            </div>
+
+                            <div class="col-auto">
+                                <button class="btn btn-info text-white">Add</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div> -->
+
+                <!-- LAST CARD - TO ADD NEW TEAMS -->
+                <!-- <div class="col-12 col-md-4 d-flex mb-3">
+                    <div class="card p-3">
+                        <img class="card-img-top" src="https://freeiconshop.com/wp-content/uploads/edd/plus-outline.png"
+                            alt="Add new team">
+                    </div>
+                </div> -->
+
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" defer></script>
+
+</body>
+
+</html>
